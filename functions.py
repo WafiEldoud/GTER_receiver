@@ -2,7 +2,7 @@ import pandas as pd
 import os
 import time
 
-# positions file info
+# Positions file info
 def monitor_pos_file(file_path, check_interval):
     last_size = 0
     data_frame = pd.DataFrame()
