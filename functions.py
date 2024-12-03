@@ -1,7 +1,10 @@
 import pandas as pd
 import os
 import time
+import numpy as np
+from sqlalchemy import create_engine
 
+engine = create_engine('postgresql+psycopg2://postgres:30486@localhost:5432/postgres')
 # Positions file info
 def monitor_pos_file(file_path, check_interval):
     last_size = 0
@@ -46,7 +49,7 @@ def monitor_pos_file(file_path, check_interval):
             'sdne','sdeu','sdun', 'age', 'ratio'
         ]
     data_frame = data_frame.drop(index=0).reset_index(drop=True)
-    data_frame.to_csv('positions.csv', mode='a', header=False, index=False)
+    data_frame.to_sql('positions', engine, if_exists='append')
     
     return data_frame
 
@@ -97,26 +100,38 @@ def monitor_ZTD_file(file_path, check_interval):
             'nan_6','nan_7','nan_8','nan_9'
         ]
     data_frame = data_frame[data_frame['info'] == '$TROP']
-    data_frame.to_csv('ztd.csv', mode='a', header=False, index=False)
+    data_frame.to_sql('ztd', engine, if_exists='append')
     
     return data_frame
+
+# ZHD extraction
+def zhd_cal(positions, height, pressure):
+    zhd_list = []
+    for i, row in positions.iterrows():
+        longitude = row['longitude']
+        height = row['height']
+        zhd = (0.0022768 * pressure)/1 - ((0.00266 * np.cos(longitude)) - (2.8 * 10^-7 *height))
+        zhd_list.append(zhd)
+    zhd_data = {'zhd': zhd_list}
+    zhd_df = pd.DataFrame(zhd_data)
+    return zhd_df
 
 # ZWD extraction
 def zwd_cal(ztd_readings, zhd_reading):
     zwd_list = []
-    for i, row in ztd_readings.iterrows():
-        zwd = row['ztd'] - zhd_reading
-        zwd_list.append(zwd)
-        zwd_data = {'zwd': zwd_list}
-        zwd_df = pd.DataFrame(zwd_data)
+    zwd = ztd_readings['ztd'] - zhd_reading['zhd']
+    zwd_list.append(zwd)
+    zwd_data = {'zwd': zwd_list}
+    zwd_df = pd.DataFrame(zwd_data)
     return zwd_df
 
 # PWV extraction
 def pwv_cal(zwd_readings, pressure, tempreture,R_w, k_2, k_3):
     pwv_list = []
     for i, row in zwd_readings.iterrows():
-        pwv = row['ztd'] * 10^6/(pressure*R_w(k_2 + (k_3/tempreture)))
+        zwd = row['ztd']
+        pwv = ztd * 10^6/(pressure*R_w(k_2 + (k_3/tempreture)))
         pwv_list.append(pwv)
-        pwv_data = {'pwv': pwv_list}
-        pwv_df = pd.DataFrame(pwv_data)
+    pwv_data = {'pwv': pwv_list}
+    pwv_df = pd.DataFrame(pwv_data)
     return pwv_df
