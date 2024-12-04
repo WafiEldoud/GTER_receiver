@@ -33,7 +33,6 @@ def monitor_ZTD_file(file_path, check_interval, engine, max_checks=None):
                             [line.strip().split(',') for line in new_lines if line.strip()]
                         )
 
-                        
                         if not temp_df.empty:
                             temp_df.columns = [
                                 'info', 'GPS_week', 'time', 'sol', 'antenna',
@@ -41,13 +40,11 @@ def monitor_ZTD_file(file_path, check_interval, engine, max_checks=None):
                                 'nan_5', 'nan_6', 'nan_7', 'nan_8', 'nan_9'
                             ]
 
-                            
                             temp_df = temp_df[temp_df['info'] == '$TROP']
                             temp_df = temp_df[['info', 'GPS_week', 'time', 'sol', 'antenna', 'ztd', 'ztdf']]
-
-                            
                             data_frame = pd.concat([data_frame, temp_df], ignore_index=True)
                             temp_df.to_sql('ztd', engine, if_exists='append', index=False)
+                            
                             print(f"New ztd data added to database. Number of new rows: {len(temp_df)}")
 
                         else:
@@ -92,11 +89,9 @@ def monitor_pos_file(file_path, check_interval, engine, max_checks=None):
                         new_lines = f.readlines()
                     
                     if new_lines:
-
                         temp_df = pd.DataFrame(
                             [line.split() for line in new_lines]
                         )
-
                         
                         if not temp_df.empty:
                             temp_df.columns = [
@@ -105,14 +100,11 @@ def monitor_pos_file(file_path, check_interval, engine, max_checks=None):
                                  'sdne','sdeu','sdun', 'age', 'ratio'
                             ]
 
-                            
-                            
                             temp_df = temp_df.drop(index=0).reset_index(drop=True)
-                            
                             data_frame = pd.concat([data_frame, temp_df], ignore_index=True)
                             temp_df.to_sql('positions', engine, if_exists='append', index=False)
+                            
                             print(f"New positions data added to database. Number of new rows: {len(temp_df)}")
-
                         else:
                             print("No valid data in new lines.")
                     
@@ -140,7 +132,7 @@ def zhd_cal(positions, height, pressure):
     for i, row in positions.iterrows():
         longitude = row['longitude']
         height = row['height']
-        zhd = (0.0022768 * pressure)/1 - ((0.00266 * np.cos(longitude)) - (2.8 * 10^-7 *height))
+        zhd = (0.0022768 * pressure)/1 - ((0.00266 * np.cos(longitude)) - (2.8 * 10**-7 *height))
         zhd_list.append(zhd)
     zhd_data = {'zhd': zhd_list}
     zhd_df = pd.DataFrame(zhd_data)
@@ -160,7 +152,7 @@ def pwv_cal(zwd_readings, pressure, tempreture,R_w, k_2, k_3):
     pwv_list = []
     for i, row in zwd_readings.iterrows():
         zwd = row['ztd']
-        pwv = zwd * 10^6/(pressure*R_w(k_2 + (k_3/tempreture)))
+        pwv = zwd * 10**6/(pressure*R_w(k_2 + (k_3/tempreture)))
         pwv_list.append(pwv)
     pwv_data = {'pwv': pwv_list}
     pwv_df = pd.DataFrame(pwv_data)
