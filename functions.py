@@ -68,6 +68,7 @@ def monitor_ZTD_file(file_path, check_interval, engine, max_checks=None):
 
     return data_frame
 
+
 def monitor_pos_file(file_path, check_interval, engine, max_checks=None):
 
     last_size = 0
@@ -127,11 +128,11 @@ def monitor_pos_file(file_path, check_interval, engine, max_checks=None):
     return data_frame
 
 
-def zhd_cal(positions, height, pressure):
+def zhd_cal(positions, pressure):
     zhd_list = []
     for i, row in positions.iterrows():
-        longitude = row['longitude']
-        height = row['height']
+        longitude = float(row['longitude'])
+        height = float(row['hight'])
         zhd = (0.0022768 * pressure)/1 - ((0.00266 * np.cos(longitude)) - (2.8 * 10**-7 *height))
         zhd_list.append(zhd)
     zhd_data = {'zhd': zhd_list}
@@ -139,13 +140,16 @@ def zhd_cal(positions, height, pressure):
     return zhd_df
 
 
-def zwd_cal(ztd_readings, zhd_reading):
-    zwd_list = []
-    zwd = ztd_readings['ztd'] - zhd_reading['zhd']
-    zwd_list.append(zwd)
-    zwd_data = {'zwd': zwd_list}
-    zwd_df = pd.DataFrame(zwd_data)
-    return zwd_df
+def fetch_data(conn, query):
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute(query)
+            columns = [desc[0] for desc in cursor.description]
+            rows = cursor.fetchall()
+            return pd.DataFrame(rows, columns=columns)
+    except Exception as e:
+        print(f"Error fetching data: {e}")
+        return pd.DataFrame()
 
 
 def pwv_cal(zwd_readings, pressure, tempreture,R_w, k_2, k_3):
