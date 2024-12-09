@@ -16,7 +16,7 @@ def monitor_ZTD_file(file_path, check_interval, engine, max_checks=None):
     while True:
         try:
             if max_checks and check_count >= max_checks:
-                print("Maximum checks reached. Stopping monitoring.")
+                print('Maximum checks reached. Stopping monitoring.')
                 break
 
             if os.path.exists(file_path):
@@ -45,25 +45,25 @@ def monitor_ZTD_file(file_path, check_interval, engine, max_checks=None):
                             data_frame = pd.concat([data_frame, temp_df], ignore_index=True)
                             temp_df.to_sql('ztd', engine, if_exists='append', index=False)
                             
-                            print(f"New ztd data added to database. Number of new rows: {len(temp_df)}")
+                            print(f'New ztd data added to database. Number of new rows: {len(temp_df)}')
 
                         else:
-                            print("No valid data in new lines.")
+                            print('No valid data in new lines.')
                     
                     
                     last_size = current_size
                 
                 else:
-                    print("No new data found.")
+                    print('No new data found.')
 
             else:
-                print(f"File {file_path} does not exist.")
+                print(f'File {file_path} does not exist.')
 
             time.sleep(check_interval)
             check_count += 1
 
         except Exception as e:
-            print(f"An error occurred: {e}")
+            print(f'An error occurred: {e}')
             break
 
     return data_frame
@@ -78,7 +78,7 @@ def monitor_pos_file(file_path, check_interval, engine, max_checks=None):
     while True:
         try:
             if max_checks and check_count >= max_checks:
-                print("Maximum checks reached. Stopping monitoring.")
+                print('Maximum checks reached. Stopping monitoring.')
                 break
 
             if os.path.exists(file_path):
@@ -105,24 +105,24 @@ def monitor_pos_file(file_path, check_interval, engine, max_checks=None):
                             data_frame = pd.concat([data_frame, temp_df], ignore_index=True)
                             temp_df.to_sql('positions', engine, if_exists='append', index=False)
                             
-                            print(f"New positions data added to database. Number of new rows: {len(temp_df)}")
+                            print(f'New positions data added to database. Number of new rows: {len(temp_df)}')
                         else:
-                            print("No valid data in new lines.")
+                            print('No valid data in new lines.')
                     
                     # Update last read size
                     last_size = current_size
                 
                 else:
-                    print("No new data found.")
+                    print('No new data found.')
 
             else:
-                print(f"File {file_path} does not exist.")
+                print(f'File {file_path} does not exist.')
 
             time.sleep(check_interval)
             check_count += 1
 
         except Exception as e:
-            print(f"An error occurred: {e}")
+            print(f'An error occurred: {e}')
             break
 
     return data_frame
@@ -148,7 +148,7 @@ def fetch_data(conn, query):
             rows = cursor.fetchall()
             return pd.DataFrame(rows, columns=columns)
     except Exception as e:
-        print(f"Error fetching data: {e}")
+        print(f'Error fetching data: {e}')
         return pd.DataFrame()
 
 
