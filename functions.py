@@ -133,7 +133,7 @@ def zhd_cal(positions, pressure):
     for i, row in positions.iterrows():
         longitude = float(row['longitude'])
         height = float(row['hight'])
-        zhd = (0.0022768 * pressure)/1 - ((0.00266 * np.cos(longitude)) - (2.8 * 10**-7 *height))
+        zhd = (0.0022768 * pressure)/(1 - ((0.00266 * np.cos(longitude)) - (2.8 * 10**-7 *height)))
         zhd_list.append(zhd)
     zhd_data = {'zhd': zhd_list}
     zhd_df = pd.DataFrame(zhd_data)
