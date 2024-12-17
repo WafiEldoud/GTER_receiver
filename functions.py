@@ -49,15 +49,18 @@ def monitor_ZTD_file(file_path, check_interval, engine, max_checks=None):
 
                         else:
                             print('No valid data in new lines.')
+                            break
                     
                     
                     last_size = current_size
                 
                 else:
-                    print('No new data found.')
+                    print('No new data found. ')
+                    break
 
             else:
                 print(f'File {file_path} does not exist.')
+                break
 
             time.sleep(check_interval)
             check_count += 1
@@ -108,15 +111,19 @@ def monitor_pos_file(file_path, check_interval, engine, max_checks=None):
                             print(f'New positions data added to database. Number of new rows: {len(temp_df)}')
                         else:
                             print('No valid data in new lines.')
+                            break
+                            
                     
                     # Update last read size
                     last_size = current_size
                 
                 else:
                     print('No new data found.')
+                    break
 
             else:
                 print(f'File {file_path} does not exist.')
+                break
 
             time.sleep(check_interval)
             check_count += 1

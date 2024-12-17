@@ -12,13 +12,13 @@ if __name__ == '__main__':
         file_pos,
         check_interval,
         engine,
-        5)
+        8)
         )
     ztd_thread = threading.Thread(target=monitor_ZTD_file, args=(
         file_ztd,
         check_interval,
         engine,
-        5)
+        8)
         )
 
     pos_thread.start()
