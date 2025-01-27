@@ -86,7 +86,7 @@ body {
 
 header {
     display: inline;
-    color: #0f2c53;
+    color: #5594e7;
     align-items: top;
     padding: none;
 }
@@ -96,10 +96,10 @@ header {
 button {
     margin-left: 1px;
     padding: 9px 25px;
-    background-color: #0f2c53;
+    background-color: #5594e7;
     border-style: solid;
     border-width: 1px;
-    border-color: #0f2c53;
+    border-color: #5594e7;
     cursor: pointer; 
     position: relative;  
 }
@@ -120,7 +120,7 @@ button.info1 {
 button:hover {
     border-color:#FFFFFF;
     color: #FFFFFF;
-    background-color: #0f2c53;
+    background-color: #5594e7;
     transition: all 0.3s ease 0s;
     border-color: white;
 }
@@ -138,7 +138,7 @@ button:hover .dropdown {
     display: flex;
     margin-right: 25px;
     flex-direction: column;
-    background-color: #0f2c53;
+    background-color: #5594e7;
     transition: all 0.3s ease 0s;  
 }
 
@@ -155,7 +155,7 @@ header {
     justify-content: flex-end;
     align-items: last baseline;
     padding: 30px 2% 30px 0% ;
-    background-color: #0f2c53;
+    background-color: #5594e7;
 }
 
 .home_site {
@@ -170,7 +170,7 @@ display: inline-block;
 font-family: 'Montserrat', sans-serif;
 font-weight: 300;
 font-size: 15px;
-background-color: #0f2c53;
+background-color: #5594e7;
 color: #FFFFFF;
 border: none;
 outline: none;
@@ -181,7 +181,7 @@ position: relative;
 button.runner:hover{
     display: flex;
     flex-direction: column;
-    background-color: #0f2c53;
+    background-color: #5594e7;
     color: #cfcaca;
     border: none;
     outline: none;
@@ -190,7 +190,7 @@ button.runner:hover{
 
 .nav__links {
     list-style:none;
-    background-color: #0f2c53;
+    background-color: #5594e7;
     bottom: 0;
 }
 
@@ -201,7 +201,7 @@ button.runner:hover{
 }
 
 .nav__links li a {
-    background-color: #0f2c53;
+    background-color: #5594e7;
     transition: all 0.3s ease 0s;   
 }
 
@@ -229,7 +229,7 @@ button.runner:hover{
     border: 1px;
     border-color: #FFFFFF;
     display: block;
-    background-color: #0f2c53;
+    background-color: #5594e7;
     z-index:100;
    
 }
@@ -447,7 +447,7 @@ button.runner:hover{
 }
 
 .footer-2 {
-    background-color: #0f2c53;
+    background-color: #5594e7;
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -467,7 +467,7 @@ button.runner:hover{
     color: white(70, 68, 68);
     text-decoration: none;
     list-style-type: none;
-    background-color: #0f2c53;
+    background-color: #5594e7;
 }
 
 .login {
@@ -518,7 +518,7 @@ button.toggle-btn {
     position: absolute;
     width: 120px;
     height: 100%;
-    background: #0f2c53;
+    background: #5594e7;
     border-radius: 30px;
     transition: 0.5s;
 }
@@ -572,7 +572,7 @@ button.submit-btn {
     cursor: pointer;
     display: block;
     margin: auto;
-    background: #0f2c53;
+    background: #5594e7;
     border: 0;
     outline: none;
     border-radius: 30px;
