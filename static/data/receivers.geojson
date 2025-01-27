@@ -1,0 +1,14 @@
+{
+"type": "FeatureCollection",
+"name": "receivers",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Name": "NICE", "Latitude": 43.72549612, "Longitude": 7.2999717, "Height": 427.311 }, "geometry": { "type": "Point", "coordinates": [ 7.2999717, 43.72549612, 427.311 ] } },
+{ "type": "Feature", "properties": { "Name": "CLAP", "Latitude": 44.24844474, "Longitude": 6.92704807, "Height": 1369.932 }, "geometry": { "type": "Point", "coordinates": [ 6.92704807, 44.24844474, 1369.932 ] } },
+{ "type": "Feature", "properties": { "Name": "SCV1", "Latitude": 44.92015324, "Longitude": 6.54955407, "Height": 2328.535 }, "geometry": { "type": "Point", "coordinates": [ 6.54955407, 44.92015324, 2328.534999999999854 ] } },
+{ "type": "Feature", "properties": { "Name": "PALLU", "Latitude": 45.68537952, "Longitude": 6.39368072, "Height": 527.378 }, "geometry": { "type": "Point", "coordinates": [ 6.39368072, 45.68537952, 527.378 ] } },
+{ "type": "Feature", "properties": { "Name": "VARZI", "Latitude": 44.82333543, "Longitude": 9.19740536, "Height": 469.428 }, "geometry": { "type": "Point", "coordinates": [ 9.19740536, 44.82333543, 469.428 ] } },
+{ "type": "Feature", "properties": { "Name": "NOVR", "Latitude": 45.44720682, "Longitude": 8.61396376, "Height": 218.616 }, "geometry": { "type": "Point", "coordinates": [ 8.61396376, 45.44720682, 218.616 ] } },
+{ "type": "Feature", "properties": { "Name": "CARZ", "Latitude": 46.04233801, "Longitude": 8.68019987, "Height": 1165.273 }, "geometry": { "type": "Point", "coordinates": [ 8.68019987, 46.04233801, 1165.273 ] } }
+]
+}

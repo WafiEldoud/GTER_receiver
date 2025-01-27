@@ -1,0 +1,60 @@
+{%extends 'admin/master.html'%}
+
+{% block head_css %}
+{{ super() }}
+<link href="{{ url_for('static', filename='styles/styles.css')}}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+<link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+{% endblock %}
+{% block body%}
+
+<body class="body">
+    
+
+    
+    
+
+
+    
+
+    
+
+    <div class="socials">
+        <div class="center">
+            <a href="" target="_blank"> <img src="{{ url_for('static', filename='icons/yt.svg') }}" class="soc1" alt=""> </a>
+            <a href="" target="_blank"><img src="{{ url_for('static', filename='icons/fb.svg') }}" class="soc" alt=""> </a>
+            <a href="" target="_blank"><img src="{{ url_for('static', filename='icons/twt.svg') }}" class="soc" alt=""> </a>
+           
+        </div>
+    </div>
+
+    
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script>
+          const swiper = new Swiper('.swiper', {
+            autoplay:{
+                delay:10000,
+                disableOninteraction: false,
+            },
+          
+          loop: true,
+          pagination: {
+              el: '.swiper-pagination',
+           },
+
+
+           navigation: {
+           nextEl: '.swiper-button-next',
+           prevEl: '.swiper-button-prev',
+           },
+
+        });
+    </script>
+</body>
+
+
+
+{% endblock %}

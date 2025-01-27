@@ -43,7 +43,7 @@ def monitor_ZTD_file(file_path, check_interval, engine, max_checks=None):
                             temp_df = temp_df[temp_df['info'] == '$TROP']
                             temp_df = temp_df[['info', 'GPS_week', 'time', 'sol', 'antenna', 'ztd', 'ztdf']]
                             data_frame = pd.concat([data_frame, temp_df], ignore_index=True)
-                            temp_df.to_sql('ztd', engine, if_exists='append', index=False)
+                            temp_df.to_sql('ztd_test', engine, if_exists='append', index=False)
                             
                             print(f'New ztd data added to database. Number of new rows: {len(temp_df)}')
 
@@ -106,7 +106,7 @@ def monitor_pos_file(file_path, check_interval, engine, max_checks=None):
 
                             temp_df = temp_df.drop(index=0).reset_index(drop=True)
                             data_frame = pd.concat([data_frame, temp_df], ignore_index=True)
-                            temp_df.to_sql('positions', engine, if_exists='append', index=False)
+                            temp_df.to_sql('positions_test', engine, if_exists='append', index=False)
                             
                             print(f'New positions data added to database. Number of new rows: {len(temp_df)}')
                         else:
